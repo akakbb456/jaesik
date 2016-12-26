@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+function doPlay() {
+	var result1=document.getElementById("result1");
+	var result2=document.getElementById("result2");
+
+	var str=event.type+' : client 좌표 : (x='+event.clientX+' y='+event.clientY+')'; 
+	str+='<br> screen 좌표 : (x='+event.screenX+' y='+event.screenY+')';
+    result1.innerHTML=str;
+	// 클라이언트 좌표는 브라우저기준이고 스크린좌표는 화면기준의 좌표이다
+    if (event.type!='mousemove')
+        result2.innerHTML=str;
+}
+    
+</script>
+
+</head>
+<body onmousemove="doPlay();"
+          onclick="doPlay();"
+          ondblclick="doPlay();">
+
+  <div id="result1" style="width:800px;height:60px;line-height:30px;border:solid 1px blue;padding:5px;margin:5px;"></div>
+  <div id="result2" style="width:800px;height:30px;line-height:30px;border:solid 1px blue;padding:5px;margin:5px;"></div>
+  <div style="width:800px;height:700px;"></div>
+
+</body>
+</html>
