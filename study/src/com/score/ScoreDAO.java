@@ -206,6 +206,32 @@ public class ScoreDAO {
 		return result;
 	}
 	
+	public int deleteList(String[] haks) {
+		int result =0;
+		PreparedStatement pstmt=null;
+		String sql;
+		
+		try {
+			sql="DELETE FROM score WHERE hak IN(";
+			for (int i=0;i<haks.length;i++) {
+				sql+="?,";
+			}
+			sql = sql.substring(0, sql.length()-1);
+			sql+=")";
+			
+			pstmt=conn.prepareStatement(sql);
+			for(int i=0;i<haks.length;i++) {
+				pstmt.setString(i+1, haks[i]);
+			}
+			result = pstmt.executeUpdate();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
 }
 
 

@@ -54,32 +54,65 @@ function deleteScore(hak) {
 		location.href=url;
 	}
 }
-function selectDelete() { // 체크박스 선택 후 삭제버튼 클릭시 삭제하는 메소드
-	if(confirm("게시물을 삭제 하시겠습니까?")) { // 한번 물어봄
-		var f = document.input_form; // 폼의 정보들을 보낸다!
-		f.action="delete.jsp?page=<%=current_page%>";   // page정보를 보낸다, 링크로 이동
-		f.submit(); // 서버로 전송
-	}
-}
+
 
 function check(){
-    cbox = input_form.chk;
-    if(cbox.length) {  // 여러 개일 경우
-        for(var i = 0; i<cbox.length;i++) {
-            cbox[i].checked=input_form.all.checked;
-        }
-    }  else { // 한 개일 경우
-        cbox.checked=input_form.all.checked;
-    }  
+    var f=document.listForm;
+    if(f.chk==undefined) { // 하나도 존재하지 않는 경우
+    	return;
+    } 
+    
+    if(f.chk.length!=undefined) { // 두개 이상인 경우
+    	for(var i=0;i<f.chk.length;i++) {
+    		if(f.chkAll.checked) {
+    			f.chk[i].checked=true;
+    		} else {
+    			f.chk[i].checked=false;
+    		}
+    	}
+    } else { // 하나인 경우
+    	if(f.chkAll.checked) {
+			f.chk.checked=true;
+		} else {
+			f.chk.checked=false;
+		}
+	   }
 }
 
+function deleteList() {
+	var f=document.listForm;
+	
+	if(f.chk==undefined) { 
+		return;
+	}
+	
+	var cnt=0;
+	if(f.chk.length!=undefined) { // 데이터 두개 이상이 선택되어 있으면!
+		for (var i = 0; i < f.chk.length; i++) {
+			if(f.chk[i].checked)
+				cnt++;
+		}
+	} else { // 한개인 경우
+		if(f.chk.checked) 
+			cnt++;
+	}
+	
+	if(cnt>=1) {
+		if(confirm("삭제하시겠습니까")) {
+			f.action="deleteList.jsp";
+			f.submit();
+		}
+	} else {
+		alert("삭제할 게시물을 먼저 선택하세요...")
+	}
+}
 
 </script>
 
 
 </head>
 <body>
-<form method="post" name=input_form>
+
 <table style="width: 700px; margin: 20px auto 5px;">
 <tr height="30">
  <td align="center" colspan="2"><b>성적처리</b></td>
@@ -87,7 +120,7 @@ function check(){
 
 <tr height="25">
 	<td>
- 		<input type="button" value="삭제" onclick="selectDelete();">
+ 		<input type="button" value="삭제" onclick="deleteList();">
  	</td>
  	<td align="right">
  	 <input type="button" value="등록하기"
@@ -95,11 +128,12 @@ function check(){
    </td>
  </tr>
 </table>
+<form method="post" name=listForm>
 	<table style="width: 700px; margin: 5px auto 10px; border-spacing: 0; border-collapse: collapse" border="1">
 	<tr height="30" align="center">
 		<td width="30">
 			<input type="checkbox"
-					name="all" value = "all" onclick="check();">
+					name="chkAll" value = "all" onclick="check();">
 		</td>
 		<td width="60">학번</td>
 		<td width="100">이름</td>

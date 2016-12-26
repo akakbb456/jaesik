@@ -15,7 +15,7 @@ function check() {
        return; // false가 리턴되면 서버로 전송이 되지 않는다.
     }  
    
-    f.submit();
+    	f.submit();
 }
 </script>
 

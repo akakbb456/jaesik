@@ -58,9 +58,9 @@ width: 150px;
 <body>
 
 
-<h3 style="margin: 0px 370px auto"><img src = "../img/arrow.png"> 게시판</h3>
+<h3 style="margin: 0px 0px 0px 600px"><img src = "../img/arrow.png"> 게시판</h3>
 
-<select name="search" style="margin: 0px 5px 0px 370px">
+<select name="search" style="margin: 0px 5px 0px 600px">
     <option value="제목" selected="selected">제목</option>
     <option value="작성자">작성자</option>
 </select>

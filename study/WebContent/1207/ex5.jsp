@@ -49,7 +49,7 @@ request.setCharacterEncoding("UTF-8");
 
 <h3> 순서 있게 나열</h3>
 
-<ol style="list-style: upper-roman;" start="1">   <!-- 안에 숫자는 몇번째 부터인지 -->
+<ol style="list-style: upper-roman;" start="1">   안에 숫자는 몇번째 부터인지
 		<li>자바</li>
 		<li>안드로이드</li>
 		<li>CSS</li>

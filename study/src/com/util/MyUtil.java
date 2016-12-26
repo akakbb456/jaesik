@@ -56,23 +56,29 @@ public class MyUtil {
     	  sb.append("&nbsp;<a href='"+list_url+"page="+n+"'>[이전]</a>"); // 10page이전으로 가기위해!!
       }
       // 페이징
-      page=currentPageSetup+1; //currentPageSetup+1==> 11들어오면: 11 |25: 21 | 39: 31 | 40: 31 | 41: 41
-      while(page<=total_page && page<=(currentPageSetup+numPerBlock)) { // 25: (xx, 30)
+      page=currentPageSetup+1; //currentPageSetup+1==> 11: 11 |25: 21 | 39: 31 | 40: 31 | 41: 41
+      while(page<=total_page && page<=(currentPageSetup+numPerBlock)) {
     	  if(page==current_page) {
     		  sb.append("&nbsp;<span style='color:Fuchsia;'>"+page+"</span>"); // 링크설정한거 아님 숫자만 보이게
     	  } else {
     		  sb.append("&nbsp;<a href='"+list_url+"page="+page+"'>"+page+"</a>");
     	  }
     	  page++;
-      } // 15->크롬출력:  11 12 13 14 (15)->링크 안걸림 16 17 18 19 20
+      }
       // [다음] [끝]
-      n=current_page+numPerBlock; // 15들어오면: 25
+      n=current_page+numPerBlock;
       if(n>total_page)
     	  n=total_page;
-      if(total_page-currentPageSetup>numPerBlock) { // 15: (xx-10)>10
+      if(total_page-currentPageSetup>numPerBlock) {
     	  sb.append("&nbsp;<a href='"+list_url+"page="+n+"'>[다음]</a>");
     	  sb.append("&nbsp;<a href='"+list_url+"page="+total_page+"'>[끝]</a>");
       }
+      
+      
       return sb.toString();
    }
+   
+   
+  
+   
 }

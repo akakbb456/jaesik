@@ -1,11 +1,11 @@
-<%@page import="com.hom.JaesikUtil"%>
+<%@page import="com.util.MyUtil"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	//MyUtil util = new MyUtil();
-	JaesikUtil util = new JaesikUtil();
+	MyUtil util = new MyUtil();
+	
 	int current_page=1;
 	String pageNum=request.getParameter("page");
 	if(pageNum!=null)
@@ -32,5 +32,11 @@
 	<td align="center">
 		<%=paging %>
 	</tr>
+</table>
+
+
+
+
+
 </body>
 </html>
